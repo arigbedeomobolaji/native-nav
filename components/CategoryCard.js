@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native";
-function CategoryCard({ title, color, pressed }) {
+function CategoryCard({ id, title, color, pressed, onPress }) {
   return (
     <View style={[styles.container]}>
       <Pressable
         style={({ pressed }) => pressed && styles.pressed}
         android_ripple={true}
+        onPress={() => onPress(id)}
       >
         <View
           style={[
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   },
 
   pressed: {
-    opacity: 0.3,
+    opacity: 0.4,
   },
 
   text: {

@@ -1,24 +1,31 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native"
-import { CATEGORIES } from "../data/dummy-data"
-import CategoryCard from "../components/CategoryCard"
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { CATEGORIES } from "../data/dummy-data";
+import CategoryCard from "../components/CategoryCard";
 
+function CategoriesScreen({ navigation }) {
+  function onPress(id) {
+    navigation.navigate("Meals", {
+      categoryId: id,
+    });
+  }
 
-function CategoriesScreen() {
-    return <SafeAreaView style={styles.container}>
-        <FlatList
-            data={CATEGORIES}
-            keyExtractor={item => item.id}
-            renderItem={(item) => <CategoryCard {...item.item} />}
-            numColumns={2}
-        />
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={CATEGORIES}
+        keyExtractor={(item) => item.id}
+        renderItem={(item) => <CategoryCard {...item.item} onPress={onPress} />}
+        numColumns={2}
+      />
     </SafeAreaView>
+  );
 }
 
-export default CategoriesScreen
+export default CategoriesScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#584444",
-        flex: 1,
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#584444",
+  },
+});
